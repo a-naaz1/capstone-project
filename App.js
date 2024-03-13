@@ -8,6 +8,8 @@ import LoginScreen from './screens/login';
 import OptionsScreen from './screens/options';
 import CameraScreen from './screens/camera';
 import GalleryScreen from './screens/imagePicker';
+import UploadMediaFile from './screens/imagePicker';
+import "firebase/storage";
 
 
 const Stack = createNativeStackNavigator();

@@ -21,8 +21,7 @@ const LoginScreen = ({navigation}) => {
        // if (password == password && handleSignIn(email,password)==true ){
             handleSignIn(email,password)
             navigation.navigate("Options") 
-        
-        
+         
     }
 
 

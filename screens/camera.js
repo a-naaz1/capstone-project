@@ -13,13 +13,18 @@ export default function App() {
   const [flash, setFlash]=useState(Camera.Constants.FlashMode.off);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef =useRef(null);
-  
-  useEffect(() => {
-    (async () => {
-        MediaLibrary.requestPermissionsAsync();
-        const cameraStatus = await Camera.requestCameraPermissionsAsync();
-        setHasCameraPermission(cameraStatus.status === 'granted');
-    }) ();
+ 
+
+
+
+
+
+useEffect(() => {
+  (async () => {
+      MediaLibrary.requestPermissionsAsync();
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === 'granted');
+  }) ();
 },[])
 
 const takePicture = async () => {
@@ -49,19 +54,7 @@ const saveImage =async ()=> {
 if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  const Crop_img = () => {
-    ImagePicker.openCropper({
-      path: data.uri,
-      width: dimensions.width - 30,
-      height: dimensions.height / 3.5,
-      maxFiles: 1,
-      showCropFrame: false,
-    }).then(data => {
-      console.log(data.path);
-      Crop_img(data.path);
-    });
-      };
-
+  
 // loading the image 
 // this we need to options so must include statement that gets the image and 
 //assign it
