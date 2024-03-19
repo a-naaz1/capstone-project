@@ -4,6 +4,7 @@ import {app} from "../firebase"
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth"
 import {Ionicons} from "@expo/vector-icons";
 
+
 const LoginScreen = ({navigation}) => {
     const [isPasswordShown, setIsPasswordShown]=useState(false);
     const [email, setEmail] = useState('');

@@ -7,8 +7,8 @@ import StartScreen from './screens/start';
 import LoginScreen from './screens/login';
 import OptionsScreen from './screens/options';
 import CameraScreen from './screens/camera';
-import GalleryScreen from './screens/imagePicker';
-import UploadMediaFile from './screens/imagePicker';
+import GalleryScreen from './screens/imagePicker1';
+//import UploadMediaFile from './screens/imagePicker1';
 import "firebase/storage";
 
 
