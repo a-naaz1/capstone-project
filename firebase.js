@@ -23,7 +23,6 @@ const firebaseConfig = {
   messagingSenderId: "603857785138",
   appId: "1:603857785138:web:97d5189a5f36fa0a80472b",
   measurementId: "G-EMQ2T8L8PN",
-  storageBucket:'[gs://capstonefinal-ddbb0.appspot.com]',
 };
 
 // Initialize Firebase

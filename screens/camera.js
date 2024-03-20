@@ -13,6 +13,7 @@ export default function App() {
   const [flash, setFlash]=useState(Camera.Constants.FlashMode.off);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef =useRef(null);
+  const [uploading, setUploading] = useState(false) 
  
 
 
@@ -54,6 +55,25 @@ const saveImage =async ()=> {
 if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  const uploadImage = async () => {
+    setUploading(true)
+    const response = await fetch(image.uri)
+    const blob = await response.blob()
+    const filename = image.uri.substring(image.uri.lastIndexOf('/')+1)
+    var ref = firebase.storage().ref().child(filename).put(blob)
+    try {
+        await ref;
+    } catch (e){
+        console.log(e)
+    }
+    setUploading(false)
+    Alert.alert(
+        'Photo uploaded!'
+    );
+    setImage(null);
+} 
+
   
 // loading the image 
 // this we need to options so must include statement that gets the image and 

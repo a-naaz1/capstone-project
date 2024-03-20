@@ -2,6 +2,7 @@
   "expo": {
     "name": "CapstoneApp1",
     "slug": "CapstoneApp1",
+    "permissions": ["internet", "camera", "audio", "location"],
     "version": "1.0.0",
     "plugins": [
       [
