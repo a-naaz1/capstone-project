@@ -8,8 +8,12 @@ import LoginScreen from './screens/login';
 import OptionsScreen from './screens/options';
 import CameraScreen from './screens/camera';
 import GalleryScreen from './screens/imagePicker1';
+import PreviouScans from './screens/PreviousScans'
 //import UploadMediaFile from './screens/imagePicker1';
 import "firebase/storage";
+
+//import * as ort from "onnxruntime-react-native"
+import { InferenceSession } from "onnxruntime-react-native";
 
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +29,7 @@ export default function App(){
         <Stack.Screen options ={{headerShown: false }}  name="Options" component={OptionsScreen} />
         <Stack.Screen options ={{headerShown: false }}  name="Camera" component={CameraScreen} />
         <Stack.Screen options ={{headerShown: false }}  name="Gallery" component={GalleryScreen} />
+        <Stack.Screen options ={{headerShown: false }}  name="Previous" component={PreviouScans} />
       </Stack.Navigator>
     </NavigationContainer>
     )

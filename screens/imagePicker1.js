@@ -8,6 +8,7 @@ import "firebase/compat/storage";
 import firebase from 'firebase/compat/app'; // Import the compat version of firebase
 import 'firebase/compat/storage'; 
 import ImageUtils from 'react-native-image-utils';
+//import {torch, torchvision, media} from 'react-native-pytorch-core';
 
 
 const UploadScreen = () => {
@@ -15,6 +16,24 @@ const UploadScreen = () => {
    const [uploading, setUploading] = useState(false) 
    const [downloadedURL, setDownloadedURL] = useState(null);
    const [imageUrl, setImageUrl] = useState(null);
+    const [imageWidth, setImageWidth] = useState(null); // State variable to store image width
+
+   useEffect(() => {
+    // Fetch the download URL of the image from Firebase Storage
+    const fetchImage = async () => {
+      try {
+        const storageRef = firebase.storage().ref();
+        const imageRef = storageRef.child('image_hello.jpg'); // Replace 'your_image.jpg' with the actual filename
+        const url = await imageRef.getDownloadURL();
+        setImageUrl(url);
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
+    };
+
+    fetchImage(); // Call the fetchImage function when the component mounts
+  }, []);
+  
 
 
    const pickImage = async () => {
@@ -51,39 +70,57 @@ const uploadImage = async () => {
   }
 };
 
-useEffect(() => {
-  // Fetch the download URL of the image from Firebase Storage
-  const fetchImage = async () => {
-      try {
-          const storageRef = firebase.storage().ref();
-          const timestamp = Date.now();
-          const imageRef = storageRef.child('image_' + timestamp + '.jpg'); // Replace 'your_image.jpg' with the actual filename
-          const url = await imageRef.getDownloadURL();
-          setImageUrl(url);
-      } catch (error) {
-          console.error('Error fetching image:', error);
-      }
-  };
-
-  fetchImage(); // Call the fetchImage function when the component mounts
-}, []);
 
     const loadImage =async ()=> {
       const image = imageUrl;
+      try {
+        const { width, height } = await new Promise((resolve, reject) => {
+          Image.getSize(imageUrl, (width, height) => {
+            resolve({ width, height });
+          }, error => reject(error));
+        });
+        console.log("Image width:", width);
+        console.log("Image height:", height);
+        // You can use width and height here as needed
+      } catch (error) {
+        console.error("Error loading image:", error);
+      }
       
       // getting the image height and width
       
-      let imageWidth = image.getWidth();
-      let imageHeight = image.getHeight();
-      console.log(imageHeight);
+      // let imageWidth = image.getWidth();
+      // let imageHeight = image.getHeight();
+      // console.log(imageHeight);
       // converting the image to a blob
-      const blob = media.toBlob(image);
+      // const blob = image.blob();
+      //const blob = await image.blob();
+
+      const fetchImageAsBlob = async (imageUrl) => {
+        try {
+          const response = await fetch(imageUrl);
+          const blob = await response.blob();
+          return blob;
+        } catch (error) {
+          console.error('Error fetching image:', error);
+          return null;
+        }
+      };
+
+      fetchImageAsBlob(imageUrl)
+  .then(blob => {
+    if (blob) {
+       // from blob converting it to a tensor
+       let tensor = torch.fromBlob(blob, [height, width, 3]);
+       console.log(tensor);
+       // Rearrange the tensor shape to be [CHW]
+       tensor = tensor.permute([2, 0, 1]);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
       
-      // from blob converting it to a tensor
-      let tensor = torch.fromBlob(blob, [imageHeight, imageWidth, 3]);
-      console.log(tensor);
-      // Rearrange the tensor shape to be [CHW]
-      tensor = tensor.permute([2, 0, 1]);
+     
       
       // Divide the tensor values by 255 to get values between [0, 1]
       tensor = tensor.div(255); //uint8 2^4 0-255 = 2^n -1  log2(256) 8

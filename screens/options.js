@@ -35,7 +35,7 @@ return (
 
 
     <TouchableOpacity
-        onPress={()=> {}}
+        onPress={()=> navigation.navigate("Previous")}
         style={[styles.button, styles.buttonOutline]}
     >
     <Text style={styles.buttonOutlineText}>View Previous Scans </Text>

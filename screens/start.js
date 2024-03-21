@@ -41,8 +41,6 @@ return (
     </KeyboardAvoidingView>
 )
 }
-
-
 export default StartScreen
 
 
@@ -53,13 +51,11 @@ container:{
     alignItems:'center',
 },
 
-
 titleText:{
     color: 'black',
     fontWeight:'700',
     fontSize: 30,
 },
-
 
 optionsText:{
     color: 'black',
@@ -67,18 +63,16 @@ optionsText:{
     fontSize: 15,    
 },
 
-
 containerImage: {
     justifyContent: 'center',
     alignItems: 'center',
     padding:30,
-  },
-
+},
 
 logo: {
     width: 200,
     height: 200,
-  },
+},
  
 buttonContainer:{
     width: '60%',
@@ -87,7 +81,6 @@ buttonContainer:{
     marginTop: 15,
 },
 
-
 button:{
     backgroundColor: 'black',
     width: '100%',
@@ -95,14 +88,12 @@ button:{
     borderRadius: 10,
 },
 
-
 buttonOutline:{
     backgroundColor:'white',
     marginTop: 5,
     borderColor: 'black',
     borderWidth:2,
 },
-
 
 buttonOutlineText:{
     color: 'black',
