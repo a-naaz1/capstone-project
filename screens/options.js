@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Image, Text, StyleSheet, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
-import {Camera} from 'expo-camera'
+//import {Camera} from 'expo-camera'
 import Gallery from '../screens/imagePicker';
 //import * as Permissions from ;
 //import CameraScreen from './screens/camera';
