@@ -7,24 +7,31 @@ import '@firebase/firestore';
 import '@firebase/storage';
 import * as tf from '@tensorflow/tfjs';
 
-import { storage } from '../firebase';
-import "firebase/storage";
-import "firebase/compat/storage";
-import firebase from 'firebase/compat/app'; // Import the compat version of firebase
-import 'firebase/compat/storage'; 
-//import RNFetchBlob from 'rn-fetch-blob';
 
+// import { storage } from '../firebase';
+// import "firebase/storage";
+// import "firebase/compat/storage";
+// import firebase from 'firebase/compat/app'; // Import the compat version of firebase
+// import 'firebase/compat/storage'; 
+// //import RNFetchBlob from 'rn-fetch-blob';
+//import { InferenceSession } from 'onnxruntime-react-native';
+//import { Onnx } from 'onnxruntime-react-native';
 
+// ES Module import syntax
+//import * as ort from 'onnxruntime-react-native';
+import {Tensor, InferenceSession} from 'onnxjs';
 
-const FirebaseStorageExample = () => {
-    const [imageURL, setImageURL] = useState(null);
-  const [tensorData, setTensorData] = useState(null);
+const [tensorData, setTensorData] = useState(null);
+  const session = new InferenceSession();
+  //use the following in an async method
+
 
   useEffect(() => {
     // Ensure TensorFlow.js is initialized before proceeding
     initializeTensorFlow();
   }, []);
 
+  
   const initializeTensorFlow = async () => {
     try {
       await tf.ready(); // Wait for TensorFlow.js to be ready
@@ -76,20 +83,21 @@ const FirebaseStorageExample = () => {
     });
   };
 
+
   const runModel = () => {
     // Run your machine learning model here using tensorData
     // Example: const result = yourModel.predict(tensorData);
   };
   
 
-  return (
-    <View style={styles.container}>
-      {imageURL && <Image source={{ uri: imageURL }} style={styles.image} />}
-      {tensorData && (
-        <Button title="Run Model" onPress={runModel} />
-      )}
-    </View>
-  );
+//   return (
+//     // <View style={styles.container}>
+//     //   {imageURL && <Image source={{ uri: imageURL }} style={styles.image} />}
+//     //   {tensorData && (
+//     //     <Button title="Run Model" onPress={runModel} />
+//     //   )}
+//     // </View>
+//   );
 };
 
 const styles = StyleSheet.create({

@@ -8,7 +8,7 @@ import "firebase/compat/storage";
 import firebase from 'firebase/compat/app'; // Import the compat version of firebase
 import 'firebase/compat/storage'; 
 import ImageUtils from 'react-native-image-utils';
-import {bundleResourceIO, decodeJpeg} from '@tensorflow/tfjs-react-native'
+//import {bundleResourceIO, decodeJpeg} from '@tensorflow/tfjs-react-native'
 import * as FileSystem from 'expo-file-system';
 
 
@@ -81,14 +81,6 @@ const uploadImage = async () => {
         console.error("Error loading image:", error);
       }
     }
-
-
-      
-
-    
-      
-      
-
 
 return (
   <SafeAreaView style={styles.container}>

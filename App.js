@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,7 +12,6 @@ import CameraScreen from './screens/camera';
 import GalleryScreen from './screens/imagePicker1';
 import PreviouScans from './screens/PreviousScans';
 import AnalysisScreen from './screens/ResultsScreen';
-
 
 const Stack = createNativeStackNavigator();
 

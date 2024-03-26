@@ -2,7 +2,12 @@
   "expo": {
     "name": "CapstoneApp1",
     "slug": "CapstoneApp1",
-    "permissions": ["internet", "camera", "audio", "location"],
+    "permissions": [
+      "internet",
+      "camera",
+      "audio",
+      "location"
+    ],
     "version": "1.0.0",
     "plugins": [
       [
@@ -10,6 +15,9 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
+      ],
+      [
+        "onnxruntime-react-native"
       ]
     ],
     "orientation": "portrait",
@@ -30,7 +38,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "package.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
